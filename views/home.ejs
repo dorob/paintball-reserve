@@ -1,0 +1,17 @@
+<% if (loggedIn) { %>
+  <% include logged_in_header %>
+<% } else { %>
+  <% include logged_out_header %>
+<% } %>
+
+  <% if (reserve_succeed) { %>
+    <% include reserve_succeed %>
+  <% } %>
+  <% if (reserve_needed) { %>
+    <% include reserve_needed %>
+  <% } %>
+  <% if (home_content) { %>
+    <% include home_content %>
+  <% } %>
+
+<% include footer %>

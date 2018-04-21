@@ -1,0 +1,26 @@
+body {
+  padding-top: 3.5rem;
+}
+
+.jumbotron-lowpadding {
+  padding: 1.25rem 7rem;
+}
+
+.btn-custom-width {
+  width: 7rem !important;
+}
+
+.btn-custom-date {
+  border: 1px solid transparent;
+  border-color: #FF9900;
+  color: white;
+}
+
+.th-width {
+  width: 20px;
+}
+
+.nav-name {
+  display: block;
+  padding: 0rem 1rem;
+}
