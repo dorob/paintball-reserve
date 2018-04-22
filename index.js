@@ -1,10 +1,6 @@
 var express = require('express');
 var app = express();
 
-var mongoose = require('mongoose');
-var Schema = require('mongoose').Schema;
-mongoose.connect('mongodb://localhost/elyk64');
-
 var session = require('express-session');
 var bodyParser = require('body-parser');
 
@@ -18,6 +14,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 */
+
+var db = require('./config/db');
+var User = require('./models/user');
+var ati = new User({ email: 'ati@ati.com' });
+ati.save(function (err, ati) {
+  if (err)
+    return console.error(err);
+  console.log("success");
+});
 
 app.use(function (req, res, next) {
   res.tpl = {};

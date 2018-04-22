@@ -4,7 +4,7 @@ var db = require('../config/db');
 var User = db.model('User', {
   email: String,
   password: String,
-  hasAdminRight: { type: boolean, default:false }
+  hasAdminRight: { type: Boolean, default:false }
 });
 
 module.exports = User;

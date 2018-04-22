@@ -1,6 +1,6 @@
 var renderMW = require('../middlewares/generic/render');
 
-var userModel = requre('../models/user');
+var userModel = require('../models/user');
 
 module.exports = function (app) {
 

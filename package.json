@@ -1,5 +1,5 @@
 {
-  "name": "nodeexpress",
+  "name": "paintball-reserve",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,8 @@
     "ejs": "^2.5.8",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "mongodb": "^3.0.7",
+    "mongoose": "^5.0.15",
     "nodemon": "^1.17.1"
   }
 }
