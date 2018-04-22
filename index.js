@@ -14,7 +14,33 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(function (req, res, next) {
-  res.tpl = {};
+
+    res.tpl = {};
+
+    res.tpl.reserve_succeed = false;
+    res.tpl.reserve_needed = false;
+    res.tpl.home_content = true;
+    res.tpl.loggedIn = true;
+    res.tpl.create = true;
+    res.tpl.reservationId = 1;
+    res.tpl.date = new Date();
+    res.tpl.hasAdminRight = true;
+    res.tpl.slots = ['szabad', 'szabad', 'szabad', 'foglalt', 'foglalt', 'foglalt', 'kijelölve', 'kijelölve', 'kijelölve']
+    res.tpl.reservations = [
+      {
+        date: new Date(),
+        mapName: "Pálya #1",
+        id: 1,
+        past: false
+      },
+      {
+        date: new Date(),
+        mapName: "Pálya #2",
+        id: 2,
+        past: false
+      }
+    ]
+
   return next();
 });
 

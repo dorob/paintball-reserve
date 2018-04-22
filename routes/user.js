@@ -1,3 +1,5 @@
+var redirectMW = require('../middlewares/generic/redirect');
+
 var loginMW = require('../middlewares/user/login');
 var checkUserMW = require('../middlewares/user/checkUser');
 var createUserMW = require('../middlewares/user/createUser');
@@ -13,20 +15,14 @@ module.exports = function (app) {
 
     app.post('/login',
         loginMW(objectRepository),
-        function (req, res, next) {
-            res.redirect('/');
-        });
+        redirectMW(objectRepository,'/'));
 
     app.post('/registration',
         checkUserMW(objectRepository),
         createUserMW(objectRepository),
-        function (req, res, next) {
-            res.redirect('/');
-        });
+        redirectMW(objectRepository,'/'));
 
     app.get('/logout',
         logoutMW(objectRepository),
-        function (req, res, next) {
-            res.redirect('/');
-        });
+        redirectMW(objectRepository,'/'));
 }

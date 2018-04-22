@@ -2,17 +2,24 @@ var Schema = require('mongoose').Schema;
 var db = require('../config/db');
 
 var Reservation = db.model('Reservation', {
-  mapId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Map'
+  date: {
+    type: Date,
+    required: true,
+    default: Date.now
   },
-  date: String,
   time: [{
-    type: Date
+    type: Number,
+    required: true,
+    min: 9,
+    max: 18
   }],
-  userId: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
+  _map: {
+    type: Schema.Types.ObjectId,
+    ref: 'Map'
+  },
+  _user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 

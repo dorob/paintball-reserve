@@ -7,49 +7,51 @@
         <div class="row">
             <div class="col">
             </div>
-            <div class="col-5 my-5">
+            <div class="col-4 my-5">
                 <table class="table-bordered table table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
                             <th>Pálya neve</th>
-                            <th>Szabadtéri vagy zárttéri ?</th>
                             <th>Művelet</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <%  maps.forEach(function(map, index) { %>
+                        <% maps.forEach(function(mapItem) { %>
                             <tr>
-                                <th class="th-width" scope="row"><%= index+1 %></th>
-                                <td class="align-middle"><%= map.name %></td>
-                                <% if (map.outdoor) { %>
-                                    <td class="align-middle">Szabadtéri</td>
-                                <% } else { %>
-                                    <td class="align-middle">Zárttéri</td>
-                                <% } %>
+                                <th class="th-width" scope="row">
+                                    <%= mapItem.id %>
+                                </th>
                                 <td class="align-middle">
-                                    <a role="button" href="/maps/del/<%= map.id %>" class="btn btn-sm btn-danger">Törlés</a>
+                                    <%= mapItem.name %>
+                                </td>
+                                <td class="align-middle">
+                                    <a role="button" href="/maps/del/<%= mapItem.id %>" class="btn btn-sm btn-danger">Törlés</a>
                                 </td>
                             </tr>
                         <% }) %>
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6 mt-5">
+                    <div class="col-2"></div>
+                    <div class="col-8 mt-5">
                         <div class="card">
                             <h6 class="card-header title">Új pálya hozzáadása</h6>
                             <div class="card-body">
-                                <form class="form mt-2" method="post" action"/maps/add">
+                                <form class="form mt-2" method="post" action="/maps/add">
                                     <div class="form-label-group">
-                                        <input type="text" id="mapName" class="form-control" placeholder="Pálya neve" required>
-                                        <a role="button" href="/maps/add" class="btn btn-lg btn-primary mt-3">Hozzáadás</a>
+                                        <div>
+                                            <input type="text" name="mapName" class="form-control" placeholder="Pálya neve" required>
+                                        </div>
+                                        <div>
+                                            <input type="submit" value="Hozzáadás" class="btn btn-lg btn-primary mt-4">
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3"></div>
+                    <div class="col-2"></div>
                 </div>
             </div>
             <div class="col">

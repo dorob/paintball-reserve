@@ -1,4 +1,5 @@
 var authenticateMW = require('../middlewares/generic/authenticate');
+var redirectMW = require('../middlewares/generic/redirect');
 var renderMW = require('../middlewares/generic/render');
 
 var checkReservationMW = require('../middlewares/reservations/checkReservation');
@@ -28,9 +29,7 @@ module.exports = function (app) {
         getDailyReservationMW(objectRepository),
         checkReservationMW(objectRepository),
         createReservationMW(objectRepository),
-        function (req, res, next) {
-            return res.redirect('/reservations');
-        });
+        redirectMW(objectRepository,'/reservations'));
 
     app.post('/reserve/selectdate',
         authenticateMW(objectRepository),
@@ -47,17 +46,13 @@ module.exports = function (app) {
         getDailyReservationByIdMW(objectRepository),
         checkReservationMW(objectRepository),
         updateReservationMW(objectRepository),
-        function (req, res, next) {
-            return res.redirect('/reservations');
-        });
+        redirectMW(objectRepository,'/reservations'));
 
     app.get('/reservations/del/:id',
         authenticateMW(objectRepository),
         getReservationMW(objectRepository),
         deleteReservationMW(objectRepository),
-        function (req, res, next) {
-            return res.redirect('/reservations');
-        });
+        redirectMW(objectRepository,'/reservations'));
 
     app.get('/reservations',
         authenticateMW(objectRepository),

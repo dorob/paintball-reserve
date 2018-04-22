@@ -1,11 +1,8 @@
 var renderMW = require('../middlewares/generic/render');
 
-var userModel = require('../models/user');
-
 module.exports = function (app) {
 
     var objectRepository = {
-        userModel: userModel
     };
 
     app.get('/login',
