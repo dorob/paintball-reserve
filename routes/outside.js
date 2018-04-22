@@ -14,9 +14,9 @@ module.exports = function (app) {
     app.get('/registration',
         renderMW(objectRepository, 'registration'));
 
-    app.get('/',
-        renderMW(objectRepository, 'home'));
-
     app.get('/forgot',
         renderMW(objectRepository, 'forgot'));
+
+    app.get('/',
+        renderMW(objectRepository, 'home'));
 }

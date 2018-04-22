@@ -13,20 +13,20 @@ module.exports = function (app) {
 
     app.post('/login',
         loginMW(objectRepository),
-        function(req, res, next) {
+        function (req, res, next) {
             res.redirect('/');
         });
 
     app.post('/registration',
-    checkUserMW(objectRepository),
-    createUserMW(objectRepository),
-    function(req, res, next) {
-        res.redirect('/');
-    });
+        checkUserMW(objectRepository),
+        createUserMW(objectRepository),
+        function (req, res, next) {
+            res.redirect('/');
+        });
 
     app.get('/logout',
-    logoutMW(objectRepository),
-    function(req, res, next) {
-        res.redirect('/');
-    });
+        logoutMW(objectRepository),
+        function (req, res, next) {
+            res.redirect('/');
+        });
 }

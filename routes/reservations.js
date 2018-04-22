@@ -1,4 +1,4 @@
-var authMW = require('../middlewares/generic/auth');
+var authenticateMW = require('../middlewares/generic/authenticate');
 var renderMW = require('../middlewares/generic/render');
 
 var checkReservationMW = require('../middlewares/reservations/checkReservation');
@@ -19,12 +19,12 @@ module.exports = function (app) {
     };
 
     app.get('/reserve/add',
-        authMW(objectRepository),
+        authenticateMW(objectRepository),
         getDailyReservationMW(objectRepository),
         renderMW(objectRepository, 'reserve'));
 
     app.post('/reserve/add',
-        authMW(objectRepository),
+        authenticateMW(objectRepository),
         getDailyReservationMW(objectRepository),
         checkReservationMW(objectRepository),
         createReservationMW(objectRepository),
@@ -33,17 +33,17 @@ module.exports = function (app) {
         });
 
     app.post('/reserve/selectdate',
-        authMW(objectRepository),
+        authenticateMW(objectRepository),
         getDailyReservationMW(objectRepository),
         renderMW(objectRepository, 'reserve'));
 
     app.get('/reserve/mod/:id',
-        authMW(objectRepository),
+        authenticateMW(objectRepository),
         getDailyReservationByIdMW(objectRepository),
         renderMW(objectRepository, 'reserve'));
 
     app.post('/reserve/mod/:id',
-        authMW(objectRepository),
+        authenticateMW(objectRepository),
         getDailyReservationByIdMW(objectRepository),
         checkReservationMW(objectRepository),
         updateReservationMW(objectRepository),
@@ -52,7 +52,7 @@ module.exports = function (app) {
         });
 
     app.get('/reservations/del/:id',
-        authMW(objectRepository),
+        authenticateMW(objectRepository),
         getReservationMW(objectRepository),
         deleteReservationMW(objectRepository),
         function (req, res, next) {
@@ -60,7 +60,7 @@ module.exports = function (app) {
         });
 
     app.get('/reservations',
-        authMW(objectRepository),
+        authenticateMW(objectRepository),
         getReservationListByUserIdMW(objectRepository),
         renderMW(objectRepository, 'reservations'));
 };

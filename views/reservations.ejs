@@ -7,9 +7,9 @@
         <div class="row">
             <div class="col">
             </div>
-            <div class="col-8 mt-5">
-                <table class="table table-hover">
-                    <thead>
+            <div class="col-7 mt-5">
+                <table class="table-bordered table table-hover">
+                    <thead class="thead-dark">
                         <tr>
                             <th>#</th>
                             <th>Dátum</th>
@@ -21,10 +21,10 @@
                         <%  reservations.forEach(function(reservation, index) { %>
                             <tr>
                                 <th class="table-success th-width" scope="row"><%= index+1 %></th>
-                                <td><%= reservation.date %></td>
-                                <td><%= reservation.mapName %></td>
+                                <td class="align-middle"><%= reservation.date %></td>
+                                <td class="align-middle"><%= reservation.mapName %></td>
                                 <% if (!reservation.past) { %>
-                                <td>
+                                <td class="align-middle">
                                     <a role="button" href="/reserve/mod/<%= reservation.id %>" class="btn btn-sm btn-warning">Módosítás</a>
                                     <a role="button" href="/reservations/del/<%= reservation.id %>" class="btn btn-sm btn-danger">Törlés</a>
                                 </td>

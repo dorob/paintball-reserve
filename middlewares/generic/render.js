@@ -8,23 +8,36 @@ module.exports = function (objectrepository, viewName) {
     res.tpl.reserve_succeed = false;
     res.tpl.reserve_needed = false;
     res.tpl.home_content = true;
-    res.tpl.loggedIn = false;
+    res.tpl.loggedIn = true;
     res.tpl.create = true;
     res.tpl.reservationId = 1;
     res.tpl.date = new Date();
-    res.tpl.slots = ['szabad','szabad','szabad','foglalt','foglalt','foglalt','kijelölve','kijelölve','kijelölve']
-    res.tpl.reservations = [
+    res.tpl.hasAdminRight = true;
+    res.tpl.maps = [
       {
-          date: new Date(),
-          mapName: "Pálya #1",
-          id: 1,
-          past: false
+        id: 1,
+        name: "Pálya #1",
+        outdoor: true
       },
       {
-          date: new Date(),
-          mapName: "Pálya #2",
-          id: 2,
-          past: false
+        id: 2,
+        name: "Pálya #2",
+        outdoor: false
+      }
+    ]
+    res.tpl.slots = ['szabad', 'szabad', 'szabad', 'foglalt', 'foglalt', 'foglalt', 'kijelölve', 'kijelölve', 'kijelölve']
+    res.tpl.reservations = [
+      {
+        date: new Date(),
+        mapName: "Pálya #1",
+        id: 1,
+        past: false
+      },
+      {
+        date: new Date(),
+        mapName: "Pálya #2",
+        id: 2,
+        past: false
       }
     ]
     res.render(viewName, res.tpl);

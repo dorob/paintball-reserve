@@ -3,7 +3,7 @@ var db = require('../config/db');
 
 var Map = db.model('Map', {
   name: String,
-  outdoor: boolean
+  outdoor: Boolean
 });
 
 module.exports = Map;

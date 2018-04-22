@@ -18,25 +18,30 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Kezdőlap</a>
+                    <a class="nav-link" href="/">Kezdőlap</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="reserve.html">Foglalás</a>
+                    <a class="nav-link" href="/reserve/add">Foglalás</a>
                 </li>
             </ul>
             <div class="d-flex flex-row-reverse mr-2">
                 <ul class="navbar-nav mr-auto">
+                    <% if (hasAdminRight) { %>
                     <li class="nav-item">
-                        <a class="nav-link active" href="reservations.html">FOGLALÁSAIM</a>
+                        <a class="nav-link mx-5" style="color: red" href="/maps">PÁLYÁK ADMINISZTRÁCIÓJA</a>
+                    </li>
+                    <% } %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reservations">FOGLALÁSAIM</a>
                     </li>
                     <li class="nav-item">
-                        <image class="mt-2 ml-3" src="img/ic_account_circle.png">
+                        <image class="mt-2 ml-3" src="../static/img/ic_account_circle.png">
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mr-2">Lucien Görcs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Kijelentkezés</a>
+                        <a class="nav-link" href="/logout">Kijelentkezés</a>
                     </li>
                 </ul>
             </div>
