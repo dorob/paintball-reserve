@@ -16,15 +16,16 @@ app.use(bodyParser.urlencoded({
 app.use(function (req, res, next) {
 
     res.tpl = {};
+    res.tpl.error = [];
 
     res.tpl.reserve_succeed = false;
-    res.tpl.reserve_needed = false;
+    res.tpl.registration_needed = false;
     res.tpl.home_content = true;
-    res.tpl.loggedIn = true;
+    //res.tpl.loggedIn = false;
     res.tpl.create = true;
     res.tpl.reservationId = 1;
     res.tpl.date = new Date();
-    res.tpl.hasAdminRight = true;
+    res.tpl.hasAdminRight = false;
     res.tpl.slots = ['szabad', 'szabad', 'szabad', 'foglalt', 'foglalt', 'foglalt', 'kijelölve', 'kijelölve', 'kijelölve']
     res.tpl.reservations = [
       {

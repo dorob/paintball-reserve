@@ -11,16 +11,21 @@ var deleteReservationMW = require('../middlewares/reservations/deleteReservation
 var getReservationListByUserIdMW = require('../middlewares/reservations/getReservationListByUserId');
 var getReservationMW = require('../middlewares/reservations/getReservation');
 
+var getMapListMW = require('../middlewares/maps/getMapList');
+
 var reservationModel = require('../models/reservation');
+var mapModel = require('../models/map');
 
 module.exports = function (app) {
 
     var objectRepository = {
-        reservationModel: reservationModel
+        reservationModel: reservationModel,
+        mapModel: mapModel
     };
 
     app.get('/reserve/add',
         authenticateMW(objectRepository),
+        getMapListMW(objectRepository),
         getDailyReservationMW(objectRepository),
         renderMW(objectRepository, 'reserve'));
 

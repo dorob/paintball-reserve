@@ -7,7 +7,7 @@ module.exports = function (objectrepository) {
     return function (req, res, next) {
         mapModel.find({}).exec(function (err, results) {
             if (err) {
-                return next(new Error('Error getting maps'));
+                next(new Error('Error getting maps'));
             }
             res.tpl.maps = results;
             next();

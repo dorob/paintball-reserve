@@ -10,21 +10,21 @@
     <link href="css/floating-labels.css" rel="stylesheet">
   </head>
   <body>
-    <form class="form-signin">
+    <form class="form-signin" method="post" action="/login">
       <div class="text-center mb-5">
         <h1 class="h2 mb-5 font-weight-normal">BELÉPÉS</h1>
       </div>
       <div class="form-label-group">
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputEmail">Email cím</label>
       </div>
       <div class="form-label-group">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <label for="inputPassword">Jelszó</label>
       </div>
       <div class="form-label-group">
         <a href="/forgot">Elfelejtetted a jelszavad ?<a>
       </div>
-      <a class="mb-3 btn btn-lg btn-primary btn-block" type="submit" href="/">Bejelentkezek</a>
+      <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Bejelentkezek</button>
     </form>
 <% include footer %>

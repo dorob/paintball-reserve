@@ -17,10 +17,10 @@ module.exports = function (app) {
         loginMW(objectRepository),
         redirectMW(objectRepository,'/'));
 
-    app.post('/registration',
+    app.post('/register',
         checkUserMW(objectRepository),
         createUserMW(objectRepository),
-        redirectMW(objectRepository,'/'));
+        redirectMW(objectRepository,'/login'));
 
     app.get('/logout',
         logoutMW(objectRepository),

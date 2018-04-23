@@ -8,8 +8,8 @@ module.exports = function (app) {
     app.get('/login',
         renderMW(objectRepository, 'login'));
 
-    app.get('/registration',
-        renderMW(objectRepository, 'registration'));
+    app.get('/register',
+        renderMW(objectRepository, 'register'));
 
     app.get('/forgot',
         renderMW(objectRepository, 'forgot'));

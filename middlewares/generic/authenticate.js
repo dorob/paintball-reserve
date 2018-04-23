@@ -6,7 +6,11 @@
 module.exports = function (objectrepository) {
 
   return function (req, res, next) {
-    return next();
+    if (res.tpl.loggedIn = false) {
+      res.tpl.registration_needed = true;
+      res.redirect('/home');
+    }
+    next();
   };
 
 };
