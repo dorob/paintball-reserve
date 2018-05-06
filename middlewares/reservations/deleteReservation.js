@@ -7,7 +7,15 @@ var requireOption = require('../common').requireOption;
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        return next();
+        const reservationModel = requireOption(objectrepository, 'reservationModel');
+        const reservationId = res.tpl.reservationToDelete._id;
+        reservationModel.remove({ _id: reservationId }, function(error) {
+            if (error) {
+                console.log('deleteReservation error: ', error);
+                return res.status(500).end();
+            }
+            return next();
+        });
     };
 
 };
