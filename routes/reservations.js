@@ -34,8 +34,7 @@ module.exports = function (app) {
         authenticateMW(objectRepository),
         getDailyReservationMW(objectRepository),
         checkReservationMW(objectRepository),
-        createReservationMW(objectRepository),
-        redirectMW(objectRepository,'/'));
+        createReservationMW(objectRepository));
 
     app.get('/reserve/mod/:id',
         authenticateMW(objectRepository),

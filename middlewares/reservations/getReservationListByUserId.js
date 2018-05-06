@@ -11,7 +11,7 @@ module.exports = function (objectrepository) {
         reservationModel.find({ _user: req.session.userid }, function(error, result) {
             if (error) {
                 console.log('getReservationListByUserId error: ', error);
-                return next(error);
+                return res.status(500).end();
             }
             res.tpl.reservations = result;
             return next();

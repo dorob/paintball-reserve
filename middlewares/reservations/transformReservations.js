@@ -14,7 +14,7 @@ module.exports = function (objectrepository) {
         mapModel.find({ _id: { $in: mapIds } }, function(error, maps) {
             if (error) {
                 console.log('transformReservations error: ', error);
-                return next(error);
+                return res.status(500).end();
             }
 
             const transformedReservations = res.tpl.reservations.map(function(reservation) {

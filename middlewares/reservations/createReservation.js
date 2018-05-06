@@ -7,7 +7,7 @@ var requireOption = require('../common').requireOption;
 
 module.exports = function (objectrepository) {
 
-    return function (req, res, next) {
+    return function (req, res) {
 
         const reservationModel = requireOption(objectrepository, 'reservationModel');
         const mapModel = requireOption(objectrepository, 'mapModel');
@@ -52,7 +52,7 @@ module.exports = function (objectrepository) {
                 if (!err) {
                     req.session.successfulReservation = true;
                 }
-                next();
+                res.status(200).end();
             })
         });
     };

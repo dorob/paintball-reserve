@@ -107,7 +107,11 @@ function sendReservation(mapName) {
             clientSlotEndTimes: getSlotEndTimeArray(),
             clientSlotStatuses: getSlotStatusArray()
         }
-    })
+    }).done(function() {
+        window.location.replace('/');
+    }).fail(function(error) {
+        console.log(error)
+    });
 };
 
 function formatDate(date) {
