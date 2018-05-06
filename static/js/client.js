@@ -23,12 +23,12 @@ slotStatuses.forEach(function (slotStatusItem) {
 reserveButton.click(function () {
     const selectedMap = getClickedMap();
     const mapName = $(selectedMap).attr('name');
+    if (!mapName) return alert('A fogadás leadásához ki kell választanod egy pályát!');
     sendReservation(mapName);
 });
 
 function getClickedMap() {
     const maps = $('.map').toArray();
-    console.log(maps)
     const selectedMap = maps.filter(function (mapItem) {
         return $(mapItem).parents('.active').length > 0
     });
