@@ -22,6 +22,7 @@ module.exports = function (objectrepository) {
                     return element._id.toString() == reservation._map.toString();
                 });
                 return {
+                    id: reservation._id,
                     date: reservation.date,
                     mapName: map.name,
                     past: Date.now() > reservation.date
