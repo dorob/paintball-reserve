@@ -12,17 +12,15 @@ module.exports = function (objectrepository) {
         const reservationModel = requireOption(objectrepository, 'reservationModel');
         const mapModel = requireOption(objectrepository, 'mapModel');
 
-        let mapId;
         mapModel.find({
             name: res.tpl.clientSelectedMapName
         }, function (err, result) {
-            mapId = result[0]._id;
+            if (err) return res.status(500).end();
+            if (result.length == 0) return res.status(404).end();
 
-            const filteredClientSlotStatuses = res.tpl.clientSlotStatuses.filter(function (clientSlotStatusItem) {
-                return clientSlotStatusItem == 'Kijelölve'
-            })
+            const mapId = result[0]._id;
 
-            const transformedReservationArray = filteredClientSlotStatuses.map(function (clientSlotStatusItem, index) {
+            const transformedReservationArray = res.tpl.clientSlotStatuses.map(function (clientSlotStatusItem, index) {
                 if (clientSlotStatusItem == 'Kijelölve') {
                     if (!!mapId) {
                         const reservation = new reservationModel();
@@ -45,10 +43,16 @@ module.exports = function (objectrepository) {
                             return reservation;
                         }
                     }
+                } else {
+                    return clientSlotStatusItem;
                 }
             })
 
-            reservationModel.insertMany(transformedReservationArray, function (err) {
+            const filteredAndTransformedReservationArray = transformedReservationArray.filter(function (clientSlotStatusItem) {
+                return clientSlotStatusItem != 'Foglalt' && clientSlotStatusItem != 'Szabad';
+            })
+
+            reservationModel.insertMany(filteredAndTransformedReservationArray, function (err) {
                 if (!err) {
                     req.session.successfulReservation = true;
                 }
