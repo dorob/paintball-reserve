@@ -7,7 +7,15 @@ var requireOption = require('../common').requireOption;
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        return next();
+        const reservationModel = requireOption(objectrepository, 'reservationModel');
+        reservationModel.find({ _user: req.session.userid }, function(error, result) {
+            if (error) {
+                console.log('getReservationListByUserId error: ', error);
+                return next(error);
+            }
+            res.tpl.reservations = result;
+            return next();
+        });
     };
 
 };

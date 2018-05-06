@@ -9,6 +9,7 @@ var getDailyReservationByIdMW = require('../middlewares/reservations/getDailyRes
 var updateReservationMW = require('../middlewares/reservations/updateReservation');
 var deleteReservationMW = require('../middlewares/reservations/deleteReservation');
 var getReservationListByUserIdMW = require('../middlewares/reservations/getReservationListByUserId');
+var transformReservationsMW = require('../middlewares/reservations/transformReservations');
 var getReservationMW = require('../middlewares/reservations/getReservation');
 
 var getMapListMW = require('../middlewares/maps/getMapList');
@@ -57,5 +58,6 @@ module.exports = function (app) {
     app.get('/reservations',
         authenticateMW(objectRepository),
         getReservationListByUserIdMW(objectRepository),
+        transformReservationsMW(objectRepository),
         renderMW(objectRepository, 'reservations'));
 };

@@ -5,7 +5,7 @@ module.exports = function (objectrepository) {
       req.session.registrationNeeded = true;
       return res.redirect('/');
     }
-    else if (req.session.userid) {
+    else {
       res.tpl.loggedIn = true;
       res.tpl.email = req.session.email;
     }
