@@ -7,24 +7,34 @@ var requireOption = require('../common').requireOption;
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        let clientSelectedMap = req.body.selectedMap;
-        let clientDate = req.body.date;
-        let clientSlotTimes = req.body.slotTimes;
-        let clientSlotStatuses = req.body.slotStatuses;
 
+        let clientSelectedMapName = req.body.clientMapName;
+        let clientDate = req.body.clientDate;
+        let clientSlotStartTimes = req.body.clientSlotStartTimes;
+        let clientSlotEndTimes = req.body.clientSlotEndTimes;
+        let clientSlotStatuses = req.body.clientSlotStatuses;
 
         clientSlotStatuses.forEach(function (clientSlotStatusItem, index) {
-            if ($(clientSlotStatusItem).text() == 'Kijelölve') {
+            if (clientSlotStatusItem == 'Kijelölve') {
                 let serverSlot = res.tpl.slots[index];
-                if (serverSlot.status == 'Foglalt')
+                if (serverSlot.status == 'Foglalt') {
                     res.redirect('/reserve/add');
+                }
+
             }
         });
 
-        res.tpl.clientSelectedMap = clientSelectedMap;
+        res.tpl.clientSelectedMapName = clientSelectedMapName;
         res.tpl.clientDate = clientDate;
-        res.tpl.clientSlotTimes = clientSlotTimes;
+        res.tpl.clientSlotStartTimes = clientSlotStartTimes;
+        res.tpl.clientSlotEndTimes = clientSlotEndTimes;
         res.tpl.clientSlotStatuses = clientSlotStatuses;
+
+        //console.log("mapname ",clientSelectedMapName);
+        //console.log("date ",clientDate);
+        /*console.log("clientSlotStartTimes ",clientSlotStartTimes);
+        console.log("clientSlotEndTime ",clientSlotEndTimes);
+        console.log("clientSlotStatuses ",clientSlotStatuses);*/
 
         return next();
     };

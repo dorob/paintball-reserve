@@ -9,11 +9,6 @@
             </div>
             <div class="col-4 mt-4">
                 <div class="jumbotron jumbotron-lowpadding">
-                <% if (create) { %>
-                <form method="post" action="/reserve/add">
-                <% } else { %>
-                <form method="post" action="/reserve/mod/<%= reservationId %>">
-                <% } %>
                     <div class="text-center">
                         <h4>Pálya kiválasztása</h4>
                     </div>
@@ -42,9 +37,8 @@
                     </div>
                 </div>
                 <div class="d-flex flex-row justify-content-around my-4">
-                    <button class="btn btn-success" type="submit" id="reserveButton">Foglalás leadása</button>
+                    <button class="btn btn-success" id="reserveButton">Foglalás leadása</button>
                 </div>
-                </form>
             </div>
             <div class="col">
             </div>

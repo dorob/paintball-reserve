@@ -18,6 +18,14 @@
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputEmail">Email cím</label>
       </div>
-      <a class="mb-3 btn btn-lg btn-primary btn-block" type="submit" href="/">Új jelszó küldése</a>
+      <div class="form-label-group">
+        <input type="password" id="inputOldPassword" class="form-control" placeholder="Old password" required>
+        <label for="inputOldPassword">Régi jelszó</label>
+      </div>
+      <div class="form-label-group mt-5">
+        <input type="password" id="inputNewPassword" class="form-control" placeholder="New password again" required>
+        <label for="inputNewPassword">Új jelszó</label>
+      </div>
+      <a class="mb-3 btn btn-lg btn-primary btn-block" type="submit" href="/">Új jelszó generálása</a>
     </form>
 <% include footer %>

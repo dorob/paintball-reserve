@@ -64,7 +64,6 @@ module.exports = function (objectrepository) {
                         slotItem.status = 'Foglalt';
                 });
             });
-            console.log(slots);
             res.tpl.slots = slots;
             next();
         });
