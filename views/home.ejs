@@ -6,8 +6,7 @@
 
   <% if (successfulReservation) { %>
     <% include reserve_succeed %>
-  <% } %>
-  <% if (registrationNeeded) { %>
+  <% } else if (registrationNeeded) { %>
     <% include registration_needed %>
   <% } else { %>
     <% include home_content %>
