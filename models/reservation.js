@@ -7,12 +7,18 @@ var Reservation = db.model('Reservation', {
     required: true,
     default: Date.now
   },
-  time: [{
+  startTime: {
     type: Number,
     required: true,
-    min: 9,
-    max: 18
-  }],
+    min: 6,
+    max: 20
+  },
+  endTime: {
+    type: Number,
+    required: true,
+    min: 7,
+    max: 21
+  },
   _map: {
     type: Schema.Types.ObjectId,
     ref: 'Map'

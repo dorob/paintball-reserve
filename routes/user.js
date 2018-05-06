@@ -1,3 +1,4 @@
+var authenticateMW = require('../middlewares/generic/authenticate');
 var redirectMW = require('../middlewares/generic/redirect');
 
 var loginMW = require('../middlewares/user/login');

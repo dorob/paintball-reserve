@@ -4,13 +4,12 @@
   <% include logged_out_header %>
 <% } %>
 
-  <% if (reserve_succeed) { %>
+  <% if (successfulReservation) { %>
     <% include reserve_succeed %>
   <% } %>
-  <% if (registration_needed) { %>
+  <% if (registrationNeeded) { %>
     <% include registration_needed %>
-  <% } %>
-  <% if (home_content) { %>
+  <% } else { %>
     <% include home_content %>
   <% } %>
 

@@ -10,13 +10,17 @@ module.exports = function (objectrepository) {
         }
 
         userModel.findOne({
-            email: req.body.email
-        }, function (err, result) {
-            if ((err) || (result === null)) {
-                res.tpl.error.push("Nincs ilyen email címmel rendelkező felhasználó");
-            }
-            res.tpl.loggedIn = true;
-            next();
-        });
+            email: req.body.email,
+            password: req.body.password
+        },
+            function (err, result) {
+                if ((err) || (result === null))
+                    res.tpl.error.push("A felhasználónév vagy jelszó nem jó");
+                else {
+                    req.session.userid = result._id;
+                    req.session.email = result.email;
+                }
+                next();
+            });
     };
 };

@@ -13,34 +13,37 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: {
+    maxAge: 30000
+  },
+  resave: true,
+  saveUninitialized: false
+}));
+
 app.use(function (req, res, next) {
 
-    res.tpl = {};
-    res.tpl.error = [];
+  res.tpl = {};
+  res.tpl.error = [];
 
-    res.tpl.reserve_succeed = false;
-    res.tpl.registration_needed = false;
-    res.tpl.home_content = true;
-    //res.tpl.loggedIn = false;
-    res.tpl.create = true;
-    res.tpl.reservationId = 1;
-    res.tpl.date = new Date();
-    res.tpl.hasAdminRight = false;
-    res.tpl.slots = ['szabad', 'szabad', 'szabad', 'foglalt', 'foglalt', 'foglalt', 'kijelölve', 'kijelölve', 'kijelölve']
-    res.tpl.reservations = [
-      {
-        date: new Date(),
-        mapName: "Pálya #1",
-        id: 1,
-        past: false
-      },
-      {
-        date: new Date(),
-        mapName: "Pálya #2",
-        id: 2,
-        past: false
-      }
-    ]
+  res.tpl.create = true;
+  res.tpl.reservationId = 1;
+  res.tpl.hasAdminRight = false;
+  res.tpl.reservations = [
+    {
+      date: new Date(),
+      mapName: 'Pálya #1',
+      id: 1,
+      past: false
+    },
+    {
+      date: new Date(),
+      mapName: 'Pálya #2',
+      id: 2,
+      past: false
+    }
+  ]
 
   return next();
 });
