@@ -8,6 +8,7 @@ module.exports = function (objectrepository) {
     else {
       res.tpl.loggedIn = true;
       res.tpl.email = req.session.email;
+      res.tpl.hasAdminRight = req.session.hasAdmin
     }
     next();
   };

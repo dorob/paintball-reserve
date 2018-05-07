@@ -6,7 +6,8 @@ module.exports = function (objectrepository) {
 
     return function (req, res, next) {
         if ((typeof req.body === 'undefined') || (typeof req.body.email === 'undefined') || (typeof req.body.password === 'undefined')) {
-            next(new Error("email or password is not defined"));
+            res.tpl.error.push("Felhasználónév vagy jelszó érvénytelen formátumú");
+            res.redirect('/login');
         }
 
         userModel.findOne({
@@ -14,13 +15,17 @@ module.exports = function (objectrepository) {
             password: req.body.password
         },
             function (err, result) {
-                if ((err) || (result === null))
-                    res.tpl.error.push("A felhasználónév vagy jelszó nem jó");
+                if ((err) || (result === null)) {
+                    res.tpl.error.push("A felhasználónév vagy jelszó nem helyes");
+                    res.redirect('/login');
+                }
                 else {
                     req.session.userid = result._id;
                     req.session.email = result.email;
+                    if (result.hasAdminRight)
+                        req.session.hasAdmin = true;
                 }
-                next();
+                res.redirect('/');
             });
     };
 };

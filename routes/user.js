@@ -1,8 +1,9 @@
 var authenticateMW = require('../middlewares/generic/authenticate');
 var redirectMW = require('../middlewares/generic/redirect');
-
+var renderMW = require('../middlewares/generic/render');
 var loginMW = require('../middlewares/user/login');
 var checkUserMW = require('../middlewares/user/checkUser');
+var updatePasswordMW = require('../middlewares/user/updatePassword');
 var createUserMW = require('../middlewares/user/createUser');
 var logoutMW = require('../middlewares/user/logout');
 
@@ -14,9 +15,12 @@ module.exports = function (app) {
         userModel: userModel
     };
 
-    app.post('/login',
-        loginMW(objectRepository),
+    app.post('/forgot',
+        updatePasswordMW(objectRepository),
         redirectMW(objectRepository,'/'));
+
+    app.post('/login',
+        loginMW(objectRepository));
 
     app.post('/register',
         checkUserMW(objectRepository),

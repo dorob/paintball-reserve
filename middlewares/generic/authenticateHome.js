@@ -4,6 +4,7 @@ module.exports = function (objectrepository) {
     if (req.session.userid) {
       res.tpl.loggedIn = true;
       res.tpl.email = req.session.email;
+      res.tpl.hasAdminRight = req.session.hasAdmin
     }
     else
       res.tpl.loggedIn = false;

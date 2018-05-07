@@ -1,10 +1,16 @@
 const reserveButton = $('#reserveButton');
 const modifyButton = $('#modifyReserveButton');
+const loginButton = $('#loginButton');
 const selectedDate = $('#dateButton');
 const slotTimes = $('.slotTime').toArray();
 let slotStatuses = $('.slotStatus').toArray();
 
 $(selectedDate).html(new Date());
+
+$('#datepicker').datepicker({
+    todayHighlight: true,
+    daysOfWeekDisabled: "0,6",
+});
 
 formatDate(new Date($(selectedDate).text()));
 
@@ -33,6 +39,10 @@ reserveButton.click(function () {
     if (!mapName) return alert('A fogadás leadásához ki kell választanod egy pályát!');
     sendReservation(mapName);
 });
+
+loginButton.click(function () {
+
+})
 
 function getClickedMap() {
     const maps = $('.map').toArray();
@@ -113,9 +123,9 @@ function sendReservation(mapName) {
             clientSlotEndTimes: getSlotEndTimeArray(),
             clientSlotStatuses: getSlotStatusArray()
         }
-    }).done(function() {
+    }).done(function () {
         window.location.replace('/');
-    }).fail(function(error) {
+    }).fail(function (error) {
         console.log(error)
     });
 }
