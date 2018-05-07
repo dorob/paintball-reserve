@@ -8,37 +8,30 @@
             <div class="col">
             </div>
             <div class="col-4 mt-4">
+                <% if (!reservationToModify) { %>
+                    <% include mapChooser %>
+                <% } %>
                 <div class="jumbotron jumbotron-lowpadding">
-                    <div class="text-center">
-                        <h4>Pálya kiválasztása</h4>
-                    </div>
-                    <div class="d-flex justify-content-center btn-group btn-group-toggle mt-5" data-toggle="buttons">
-                        <% maps.forEach(function(mapItem, index) { %>
-                            <label class="btn btn-secondary">
-                                <input type="radio" class="btn map" name="<%= mapItem.name %>" id="map<%= index %>"  autocomplete="off"> <%= mapItem.name %>
-                            </label>
-                        <% }) %>
-                    </div>
-                </div>
-                <div class="jumbotron jumbotron-lowpadding">
-                    <div class="text-center">
-                        <h4>Időpont választása</h4>
-                    </div>
-                    <div class="d-flex flex-row justify-content-around mt-4 md-5">
-                        <button type="button" class="btn btn-warning btn-custom-date" id="dateButton"></button>
-                    </div>
+                    <% if (!reservationToModify) { %>
+                        <% include dateChooser %>
+                    <% } %>
                     <div class="d-flex flex-column justify-content-around"> 
                         <% slots.forEach(function(slotItem, index) { %>
                             <div class="d-flex justify-content-around mt-4 md-2" >
                                 <button type="button" class="slotTime btn btn-light disabled"><%= slotItem.startTime %>:00 - <%= slotItem.endTime %>:00</button>
                                 <button type="button" class="slotStatus btn btn-custom-width<% if (slotItem.status == 'Szabad') { %> btn-success <% } else { %> btn-danger <% } %>" id="slot<%= index %>"><%= slotItem.status %></button>
+                                <% if (slotItem.own) { %>
+                                    <% include cancelButton %>
+                                <% } %>
                             </div>
                         <% }) %>
                     </div>
                 </div>
-                <div class="d-flex flex-row justify-content-around my-4">
-                    <button class="btn btn-success" id="reserveButton">Foglalás leadása</button>
-                </div>
+                <% if (reservationToModify) { %>
+                    <% include modifyButton %>
+                <% } else { %>
+                     <% include reserveButton %>
+                <% } %>
             </div>
             <div class="col">
             </div>

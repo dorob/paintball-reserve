@@ -45,8 +45,7 @@ module.exports = function (app) {
         authenticateMW(objectRepository),
         getDailyReservationByIdMW(objectRepository),
         checkReservationMW(objectRepository),
-        updateReservationMW(objectRepository),
-        redirectMW(objectRepository,'/reservations'));
+        updateReservationMW(objectRepository));
 
     app.get('/reservations/del/:id',
         authenticateMW(objectRepository),

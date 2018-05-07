@@ -27,6 +27,7 @@ app.use(function (req, res, next) {
   res.tpl = {};
   res.tpl.error = [];
 
+  res.tpl.reservationToModify = false;
   res.tpl.create = true;
   res.tpl.reservationId = 1;
   res.tpl.hasAdminRight = false;

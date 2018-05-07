@@ -23,8 +23,7 @@ module.exports = function (objectrepository) {
             const transformedReservationArray = res.tpl.clientSlotStatuses.map(function (clientSlotStatusItem, index) {
                 if (clientSlotStatusItem == 'Kijelölve') {
                     if (!!mapId) {
-                        const reservation = new reservationModel();
-                        let date = new Date();
+                        const date = new Date();
                         date.setFullYear(res.tpl.clientDate.year);
                         date.setMonth(res.tpl.clientDate.month - 1);
                         date.setDate(res.tpl.clientDate.day);
@@ -32,16 +31,14 @@ module.exports = function (objectrepository) {
                         const endTime = res.tpl.clientSlotEndTimes[index];
                         const userId = req.session.userid;
 
-                        if (!!userId) {
-                            let reservation = new reservationModel();
-                            reservation.date = date;
-                            reservation.startTime = startTime;
-                            reservation.endTime = endTime;
-                            reservation._map = mapId;
-                            reservation._user = userId;
+                        const reservation = new reservationModel();
+                        reservation.date = date;
+                        reservation.startTime = startTime;
+                        reservation.endTime = endTime;
+                        reservation._map = mapId;
+                        reservation._user = userId;
 
-                            return reservation;
-                        }
+                        return reservation;
                     }
                 } else {
                     return clientSlotStatusItem;

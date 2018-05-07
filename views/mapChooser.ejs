@@ -1,0 +1,12 @@
+<div class="jumbotron jumbotron-lowpadding">
+    <div class="text-center">
+        <h4>Pálya kiválasztása</h4>
+    </div>
+    <div class="d-flex justify-content-center btn-group btn-group-toggle mt-5" data-toggle="buttons">
+        <% maps.forEach(function(mapItem, index) { %>
+            <label class="btn btn-secondary">
+                <input type="radio" class="btn map" name="<%= mapItem.name %>" id="map<%= index %>"  autocomplete="off"> <%= mapItem.name %>
+            </label>
+        <% }) %>
+    </div>
+</div>

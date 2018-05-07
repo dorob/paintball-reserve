@@ -1,4 +1,5 @@
 const reserveButton = $('#reserveButton');
+const modifyButton = $('#modifyReserveButton');
 const selectedDate = $('#dateButton');
 const slotTimes = $('.slotTime').toArray();
 let slotStatuses = $('.slotStatus').toArray();
@@ -20,6 +21,12 @@ slotStatuses.forEach(function (slotStatusItem) {
     });
 });
 
+modifyButton.click(function() {
+    const urlElements = window.location.pathname.split('/');
+    const reservationId = urlElements[urlElements.length - 1];
+    modifyReservation(reservationId);
+});
+
 reserveButton.click(function () {
     const selectedMap = getClickedMap();
     const mapName = $(selectedMap).attr('name');
@@ -30,11 +37,10 @@ reserveButton.click(function () {
 function getClickedMap() {
     const maps = $('.map').toArray();
     const selectedMap = maps.filter(function (mapItem) {
-        return $(mapItem).parents('.active').length > 0
+        return $(mapItem).parents('.active').length > 0;
     });
-    return selectedMap
+    return selectedMap;
 };
-
 
 function getSlotStartTimeArray() {
     let slotStartTimeArray = [];
@@ -112,7 +118,23 @@ function sendReservation(mapName) {
     }).fail(function(error) {
         console.log(error)
     });
-};
+}
+
+function modifyReservation(reservationId) {
+    $.ajax({
+        method: "POST",
+        url: "/reserve/mod/" + reservationId,
+        data: {
+            clientSlotStartTimes: getSlotStartTimeArray(),
+            clientSlotEndTimes: getSlotEndTimeArray(),
+            clientSlotStatuses: getSlotStatusArray()
+        }
+    }).done(function() {
+        window.location.replace('/reservations');
+    }).fail(function(error) {
+        console.log(error)
+    });
+}
 
 function formatDate(date) {
     const year = date.getFullYear();
