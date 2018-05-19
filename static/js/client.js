@@ -1,18 +1,21 @@
 const reserveButton = $('#reserveButton');
 const modifyButton = $('#modifyReserveButton');
 const loginButton = $('#loginButton');
-const selectedDate = $('#dateButton');
+const selectedDate = $('#datepicker');
 const slotTimes = $('.slotTime').toArray();
-let slotStatuses = $('.slotStatus').toArray();
+const slotStatuses = $('.slotStatus').toArray();
 
-$(selectedDate).html(new Date());
-
-$('#datepicker').datepicker({
-    todayHighlight: true,
-    daysOfWeekDisabled: "0,6",
-});
-
-formatDate(new Date($(selectedDate).text()));
+if ($('#datepicker').length > 0) {
+    $('#datepicker').datepicker({
+        todayHighlight: true,
+    }).on('changeDate', function (e) {
+        const choosenDate = e.date;
+        const year = choosenDate.getFullYear();
+        const month = choosenDate.getMonth() + 1;
+        const day = choosenDate.getDate();
+        window.location.replace('/reserve/add/' + year + '-' + month + '-' + day);
+    });
+}
 
 slotStatuses.forEach(function (slotStatusItem) {
     $(slotStatusItem).click(function () {
@@ -27,7 +30,7 @@ slotStatuses.forEach(function (slotStatusItem) {
     });
 });
 
-modifyButton.click(function() {
+modifyButton.click(function () {
     const urlElements = window.location.pathname.split('/');
     const reservationId = urlElements[urlElements.length - 1];
     modifyReservation(reservationId);
@@ -99,9 +102,10 @@ function getSlotStatusArray() {
 
 function getDateObject() {
     const selectedDateText = $(selectedDate).text();
-    const year = selectedDateText.substring(0, 4);
-    const month = selectedDateText.substring(5, 7);
-    const day = selectedDateText.substring(8, 10);
+    const choosenDate = new Date(selectedDateText);
+    const year = choosenDate.getFullYear();
+    const month = choosenDate.getMonth() + 1;
+    const day = choosenDate.getDate();
 
     const date = {
         year,
@@ -139,22 +143,9 @@ function modifyReservation(reservationId) {
             clientSlotEndTimes: getSlotEndTimeArray(),
             clientSlotStatuses: getSlotStatusArray()
         }
-    }).done(function() {
+    }).done(function () {
         window.location.replace('/reservations');
-    }).fail(function(error) {
+    }).fail(function (error) {
         console.log(error)
     });
 }
-
-function formatDate(date) {
-    const year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    if (month < 10)
-        month = '0' + month;
-    let day = date.getDate();
-    if (day < 10)
-        day = '0' + day;
-
-    $(selectedDate).html(year + "." + month + "." + day);
-}
-

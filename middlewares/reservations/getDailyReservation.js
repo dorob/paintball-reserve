@@ -2,8 +2,6 @@ var requireOption = require('../common').requireOption;
 
 /**
  * Lekéri az adott napi foglalásokat.
- * Ha teljesen új foglalás történik, akkor a mai napra kérdezi le,
- * ha kaptunk foglalás ID-t, akkor az ahhoz a naphoz tartozó foglalásokat kéri le.
  */
 
 module.exports = function (objectrepository) {
@@ -11,13 +9,7 @@ module.exports = function (objectrepository) {
     return function (req, res, next) {
 
         const reservationModel = requireOption(objectrepository, 'reservationModel');
-
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth();
-        const day = today.getDate();
-
-        let slots = [
+        const slots = [
             {
                 startTime: 9,
                 endTime: 10,
@@ -56,7 +48,7 @@ module.exports = function (objectrepository) {
         ]
 
         reservationModel.find({
-            date: {"$gte": new Date(year,month,day), "$lt": new Date(year,month,day+1)}         // day+1 hónap utolsó napján nem jó
+            date: {"$gte": new Date(res.tpl.year, res.tpl.month, res.tpl.day), "$lt": new Date(res.tpl.year, res.tpl.month, res.tpl.day+1)}         // day+1 hónap utolsó napján nem jó
         }, function (err, result) {
             result.forEach(function (reservationItem) {
                 slots.forEach(function (slotItem) {
