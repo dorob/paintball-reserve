@@ -12,9 +12,7 @@
                     <% include mapChooser %>
                 <% } %>
                 <div class="jumbotron jumbotron-lowpadding">
-                    <% if (!reservationToModify) { %>
-                        <% include dateChooser %>
-                    <% } %>
+                    <% include dateChooser %>
                     <div class="d-flex flex-column justify-content-around"> 
                         <% slots.forEach(function(slotItem, index) { %>
                             <div class="d-flex justify-content-around mt-4 md-2" >

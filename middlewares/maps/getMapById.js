@@ -1,8 +1,8 @@
-var requireOption = require('../common').requireOption;
+const requireOption = require('../common').requireOption;
 
 module.exports = function (objectrepository) {
 
-    var mapModel = requireOption(objectrepository,'mapModel');
+    const mapModel = requireOption(objectrepository, 'mapModel');
 
     return function (req, res, next) {
         mapModel.findOne({'_id': req.params.id}).exec(function(err, result) {

@@ -1,11 +1,11 @@
-var authenticateHomeMW = require('../middlewares/generic/authenticateHome');
-var checkIfRegistrationNeededMW = require('../middlewares/generic/checkIfRegistrationNeeded');
-var checkIfSuccessfulReservationMW = require('../middlewares/generic/checkIfSuccessfulReservation');
-var renderMW = require('../middlewares/generic/render');
+const authenticateHomeMW = require('../middlewares/generic/authenticateHome');
+const checkIfRegistrationNeededMW = require('../middlewares/generic/checkIfRegistrationNeeded');
+const checkIfSuccessfulReservationMW = require('../middlewares/generic/checkIfSuccessfulReservation');
+const renderMW = require('../middlewares/generic/render');
 
 module.exports = function (app) {
 
-    var objectRepository = {
+    const objectRepository = {
     };
 
     app.get('/login',
