@@ -45,10 +45,14 @@ module.exports = function (objectrepository) {
                 endTime: 17,
                 status: 'Szabad'
             }
-        ]
+        ];
+
+        const year = res.tpl.year || req.body.clientDate.year;
+        const month = res.tpl.month|| req.body.clientDate.month;
+        const day = res.tpl.day || req.body.clientDate.day;
 
         reservationModel.find({
-            date: {"$gte": new Date(res.tpl.year, res.tpl.month, res.tpl.day), "$lt": new Date(res.tpl.year, res.tpl.month, res.tpl.day+1)},         // day+1 hónap utolsó napján nem jó
+            date: {"$gte": new Date(year, month, day), "$lt": new Date(year, month, day + 1)},         // day+1 hónap utolsó napján nem jó
             _map: res.tpl.choosenMap._id,
         }, function (err, result) {
             result.forEach(function (reservationItem) {
