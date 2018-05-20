@@ -20,14 +20,11 @@ module.exports = function (objectrepository) {
                 reservation.endTime = res.tpl.clientSlotEndTimes[index];
                 reservation._map = res.tpl.mapId;
                 reservation._user = req.session.userid;
-
                 return reservation;
             } else if (res.tpl.slots[index].own && clientSlotStatusItem == 'Szabad') {
                 removeId = res.tpl.reservationToModify._id;
-                return 'remove';
-            } else {
-                return clientSlotStatusItem;
             }
+            return clientSlotStatusItem;
         });
 
         const filteredAndTransformedReservationArray = transformedReservationArray.filter(function (clientSlotStatusItem) {
@@ -39,7 +36,7 @@ module.exports = function (objectrepository) {
                 console.log('updateReservation error: ', error);
                 return res.status(500).end();
             }
-            reservationModel.remove({ _id: removeId }, function(error) {
+            reservationModel.remove({ _id: removeId }, function (error) {
                 if (error) {
                     console.log('updateReservation error: ', error);
                     return res.status(500).end();

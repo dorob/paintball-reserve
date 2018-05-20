@@ -5,6 +5,14 @@ const selectedDate = $('#datepicker');
 const slotTimes = $('.slotTime').toArray();
 const slotStatuses = $('.slotStatus').toArray();
 const choosenMap = $('.btn.btn-secondary');
+const reservationCancelButton = $('#reservationCancelButton');
+
+reservationCancelButton.click(function() {
+    const reservedSlot = $(this).prev();
+    reservedSlot.html('Szabad');
+    reservedSlot.attr('class', 'slotStatus btn btn-custom-width btn-success');
+    $(this).remove();
+});
 
 if ($('#datepicker').length > 0) {
     $('#datepicker').datepicker({
