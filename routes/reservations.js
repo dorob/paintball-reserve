@@ -14,6 +14,7 @@ var getReservationMW = require('../middlewares/reservations/getReservation');
 const getChoosenDateMW = require('../middlewares/reservations/getChoosenDate');
 const getChoosenMapMW = require('../middlewares/reservations/getChoosenMap');
 const getMapByNameMW = require('../middlewares/reservations/getMapByName');
+const filterPastSlotsMW = require('../middlewares/reservations/filterPastSlots');
 
 var getMapListMW = require('../middlewares/maps/getMapList');
 
@@ -32,12 +33,14 @@ module.exports = function (app) {
         getMapListMW(objectRepository),
         getChoosenMapMW(objectRepository),
         getChoosenDateMW(objectRepository),
+        filterPastSlotsMW(objectRepository),
         getDailyReservationMW(objectRepository),
         renderMW(objectRepository, 'reserve'));
 
     app.post('/reserve/add',
         authenticateMW(objectRepository),
         getMapByNameMW(objectRepository),
+        filterPastSlotsMW(objectRepository),
         getDailyReservationMW(objectRepository),
         checkReservationMW(objectRepository),
         createReservationMW(objectRepository));
