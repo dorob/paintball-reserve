@@ -10,7 +10,7 @@ module.exports = function (objectrepository) {
             return next();
         }
         const choosenMap = res.tpl.maps.find(function(map) {
-            return map.name === req.query.map;
+            return map.name == req.query.map;
         });
         res.tpl.choosenMap = choosenMap || res.tpl.maps[0];
         return next();
