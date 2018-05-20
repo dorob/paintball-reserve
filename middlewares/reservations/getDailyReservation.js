@@ -1,7 +1,7 @@
 var requireOption = require('../common').requireOption;
 
 /**
- * Lekéri az adott napi foglalásokat.
+ * Lekéri az adott napi foglalásokat az adott pályára.
  */
 
 module.exports = function (objectrepository) {
@@ -48,7 +48,8 @@ module.exports = function (objectrepository) {
         ]
 
         reservationModel.find({
-            date: {"$gte": new Date(res.tpl.year, res.tpl.month, res.tpl.day), "$lt": new Date(res.tpl.year, res.tpl.month, res.tpl.day+1)}         // day+1 hónap utolsó napján nem jó
+            date: {"$gte": new Date(res.tpl.year, res.tpl.month, res.tpl.day), "$lt": new Date(res.tpl.year, res.tpl.month, res.tpl.day+1)},         // day+1 hónap utolsó napján nem jó
+            _map: res.tpl.choosenMap._id,
         }, function (err, result) {
             result.forEach(function (reservationItem) {
                 slots.forEach(function (slotItem) {

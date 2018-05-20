@@ -12,6 +12,7 @@ var getReservationListByUserIdMW = require('../middlewares/reservations/getReser
 var transformReservationsMW = require('../middlewares/reservations/transformReservations');
 var getReservationMW = require('../middlewares/reservations/getReservation');
 const getChoosenDateMW = require('../middlewares/reservations/getChoosenDate');
+const getChoosenMapMW = require('../middlewares/reservations/getChoosenMap');
 
 var getMapListMW = require('../middlewares/maps/getMapList');
 
@@ -28,6 +29,7 @@ module.exports = function (app) {
     app.get(['/reserve/add', '/reserve/add/:date'],
         authenticateMW(objectRepository),
         getMapListMW(objectRepository),
+        getChoosenMapMW(objectRepository),
         getChoosenDateMW(objectRepository),
         getDailyReservationMW(objectRepository),
         renderMW(objectRepository, 'reserve'));

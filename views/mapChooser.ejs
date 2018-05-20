@@ -4,9 +4,19 @@
     </div>
     <div class="d-flex justify-content-center btn-group btn-group-toggle mt-5" data-toggle="buttons">
         <% maps.forEach(function(mapItem, index) { %>
-            <label class="btn btn-secondary">
-                <input type="radio" class="btn map" name="<%= mapItem.name %>" id="map<%= index %>"  autocomplete="off"> <%= mapItem.name %>
-            </label>
+            <% if (mapItem.name == choosenMap.name) { %>
+                <label class="btn btn-secondary active">
+                    <input type="radio" class="btn map focus" name="<%= mapItem.name %>" id="map<%= index %>"  autocomplete="off">
+                        <%= mapItem.name %>
+                    </input>
+                </label>
+            <% } else { %>
+                <label class="btn btn-secondary">
+                    <input type="radio" class="btn map" name="<%= mapItem.name %>" id="map<%= index %>"  autocomplete="off"> 
+                        <%= mapItem.name %>
+                    </input>
+                </label>
+            <% } %>
         <% }) %>
     </div>
 </div>

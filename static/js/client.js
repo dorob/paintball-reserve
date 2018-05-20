@@ -4,6 +4,7 @@ const loginButton = $('#loginButton');
 const selectedDate = $('#datepicker');
 const slotTimes = $('.slotTime').toArray();
 const slotStatuses = $('.slotStatus').toArray();
+const choosenMap = $('.btn.btn-secondary');
 
 if ($('#datepicker').length > 0) {
     $('#datepicker').datepicker({
@@ -16,6 +17,13 @@ if ($('#datepicker').length > 0) {
         window.location.replace('/reserve/add/' + year + '-' + month + '-' + day);
     });
 }
+
+choosenMap.click(function () {
+    const map = $(this).children();
+    const mapName = map.attr('name');
+    const path = window.location.pathname;
+    window.location.replace(path + '?map=' + mapName);
+});
 
 slotStatuses.forEach(function (slotStatusItem) {
     $(slotStatusItem).click(function () {
