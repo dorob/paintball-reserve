@@ -21,7 +21,7 @@
                         <% reservations.forEach(function(reservation, index) { %>
                             <tr>
                                 <th class="table-success th-width" scope="row"><%= index+1 %></th>
-                                <td class="align-middle"><%= reservation.date %></td>
+                                <td class="align-middle"><%= reservation.date.getFullYear() %>.<%= reservation.date.getMonth() + 1 %>.<%= reservation.date.getDate() %> <%= reservation.startTime %>:00-<%= reservation.startTime + 1 %>:00</td>
                                 <td class="align-middle"><%= reservation.mapName %></td>
                                 <% if (!reservation.past) { %>
                                 <td class="align-middle">

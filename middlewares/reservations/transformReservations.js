@@ -25,7 +25,8 @@ module.exports = function (objectrepository) {
                     id: reservation._id,
                     date: reservation.date,
                     mapName: map.name,
-                    past: Date.now() > reservation.date
+                    past: Date.now() > reservation.date,
+                    startTime: reservation.startTime
                 }
             });
             res.tpl.reservations = transformedReservations;
