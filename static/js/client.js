@@ -17,6 +17,7 @@ reservationCancelButton.click(function() {
 if ($('#datepicker').length > 0) {
     $('#datepicker').datepicker({
         todayHighlight: true,
+        startDate: new Date()
     }).on('changeDate', function (e) {
         const choosenDate = e.date;
         const year = choosenDate.getFullYear();

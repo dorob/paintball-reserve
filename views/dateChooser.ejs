@@ -5,10 +5,12 @@
             <span>A mai napon már nincs elérhető időpont</span>
         <% } %>
     </div>
-    <div class="d-flex flex-row justify-content-around mt-4 md-5" >
+    <div class="d-flex flex-row justify-content-center mt-4 md-5" >
         <button type="button" class="btn btn-warning" id="datepicker"><%= year %>-<%= month+1 %>-<%= day %></button>
         <span class="glyphicon glyphicon-plus"></span>
     </div>
   <% } else { %>
-    <span><%= reservationDate.getFullYear() %>-<%= reservationDate.getMonth() + 1 %>-<%= reservationDate.getDate() %></span>
+        <div class="h5 d-flex flex-row justify-content-center mt-4 md-5" >
+            <%= reservationDate.getFullYear() %>-<%= reservationDate.getMonth() + 1 %>-<%= reservationDate.getDate() %>
+        </div>
   <% } %>

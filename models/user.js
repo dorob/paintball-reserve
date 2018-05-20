@@ -10,9 +10,19 @@ var User = db.model('User', {
     type: String,
     required: true
   },
-  hasAdminRight: { 
-    type: Boolean, 
-    default:false 
+  hasAdminRight: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const user = new User();
+user.email = "admin";
+user.password = "admin";
+user.hasAdminRight = true;
+user.save(function (err) {
+  if (err) {
+    next(new Error("Error while creating user"));
   }
 });
 
